@@ -1,5 +1,17 @@
-Validación local final
+Validación final Playwright
+
 SHA: 6ab2aa8b25ebc0a720d0617280e6789e89e8afe5
-Run 1 UTC: 2026-10-27T03:18:37Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
-Run 2 UTC: 2026-10-27T03:19:51Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
-GitHub Actions: pendiente por ausencia de remoto configurado
+
+Run local 1 UTC: 2026-10-27T03:18:37Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
+
+Run local 2 UTC: 2026-10-27T03:19:51Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
+
+GitHub Actions run: https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40447364535
+
+CI UTC: 2026-10-27T04:01:57Z - exit 0, Chromium, Node v22.23.3, npm 10.9.9
+
+CI Cucumber: 5 features, 7 escenarios, 44 pasos aprobados, 0 escenarios fallidos
+
+Seguridad: aprobada; 63 archivos revisados por el job y 0 coincidencias de credenciales en artifacts/logs revisados
+
+Observación: Allure conserva 7 resultados crudos pero el resumen muestra 5 casos al agrupar filas de Scenario Outline por identidad histórica; Cucumber JSON es la fuente de conteo de escenarios.
