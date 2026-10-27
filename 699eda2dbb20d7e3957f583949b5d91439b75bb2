@@ -1,0 +1,13 @@
+Validación de cierre documental de Playwright
+SHA: 699eda2dbb20d7e3957f583949b5d91439b75bb2
+Cambios respecto de f52fe9e: únicamente README y documentación de trazabilidad; sin cambios en features, step definitions, Page Objects, configuración, dependencias ni workflow.
+GitHub Actions UTC: 2026-10-27T14:24:50Z - run 40520865821 - conclusión success
+Entorno: Node v22.23.3, npm 10.9.9, ci, Chromium administrado por Playwright
+Suite: npm run test:ci exit 0 - 5 features, 7/7 escenarios, 44 pasos, 0 pasos fallidos
+Reportes: Cucumber 7 casos y Allure 7 casos; control de consistencia aprobado
+Screenshots: 0, porque no hubo escenarios fallidos
+Seguridad: 64 archivos revisados, sin secretos expuestos
+Artifact evidencia: playwright-evidence-699eda2dbb20d7e3957f583949b5d91439b75bb2, ID 12741073630, SHA-256 ee0f79c0f50f40b8e0d9f7d36fee7f6b79143f4a2beefd7c059f04dbe929cd18
+Artifact seguridad: playwright-security-summary-699eda2dbb20d7e3957f583949b5d91439b75bb2, ID 12740764154, SHA-256 e30271638ce694642b5cd3f6c0310debb327d2166ef8ac9305352e2516dba620
+Matriz cross-browser funcional: 6/6 combinaciones aprobadas sobre el SHA padre f52fe9edd0e4fc9b12b10ba870bffb06189b733d; hashes en su nota qa-validation. El commit actual no altera código ejecutable.
+Run: https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40520865821
