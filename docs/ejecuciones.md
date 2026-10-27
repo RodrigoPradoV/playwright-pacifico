@@ -85,3 +85,5 @@ El 2026-10-27 se actualizó de manera explícita el stack de automatización y s
 - Escaneo de artifacts: aprobado sin valores configurados expuestos.
 
 La validación remota se ejecuta en el mismo SHA mediante un job de calidad y seis jobs de navegador/entorno. Cada artifact conserva entorno, navegador y SHA en el nombre y tiene retención de 90 días. Su run, IDs y hashes se agregan a la nota Git `qa-validation` sin modificar el commit probado.
+
+El primer intento remoto de la nueva matriz confirmó el gate de calidad y cinco combinaciones, pero `dev/WebKit` agotó el timeout implícito de Cucumber de 5 segundos al iniciar escenarios en un runner frío. `uat/WebKit` y ambas ejecuciones WebKit locales aprobaron, por lo que no fue un defecto funcional ni una incompatibilidad del navegador. Se declaró `setDefaultTimeout(45_000)` para hooks/steps, manteniendo el timeout de navegación en 30 segundos y sin introducir reintentos.

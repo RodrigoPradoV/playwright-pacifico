@@ -30,6 +30,7 @@
 | P-D17 | Decisión técnica | Las dependencias de automatización se actualizaron de forma explícita y regresiva; `allure-playwright` se retiró porque la integración activa es `allure-cucumberjs`. `npm audit --audit-level=high` es gate bloqueante. |
 | P-D18 | Decisión técnica | Allure 3 utiliza su formatter oficial `allure-cucumberjs/reporter`; Multiple Cucumber HTML 4 se invoca desde un módulo ESM. Se mantiene el control bloqueante de 7 casos Cucumber = 7 casos Allure. |
 | P-D19 | Decisión técnica | Los artifacts de cada combinación se nombran con entorno, navegador y SHA y se conservan durante 90 días. |
+| P-D20 | Decisión técnica | Cucumber dispone de 45 segundos por hook/step. Esto permite iniciar contextos WebKit en runners fríos y deja actuar el timeout explícito de navegación de 30 segundos; no se agregan retries ni se transforma un timeout en aprobado. |
 
 ## Mejoras fuera de alcance
 

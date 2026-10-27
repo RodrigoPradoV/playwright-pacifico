@@ -1,4 +1,4 @@
-import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
+import { After, AfterAll, Before, BeforeAll, setDefaultTimeout, Status } from "@cucumber/cucumber";
 import { Browser } from "@playwright/test";
 import * as fs from "fs";
 import * as path from "path";
@@ -7,6 +7,8 @@ import { getEnv } from "../helper/env/env";
 import { ScenarioWorld } from "../helper/world";
 
 let browser: Browser | undefined;
+
+setDefaultTimeout(45_000);
 
 BeforeAll(async function () {
     getEnv();
