@@ -1,0 +1,32 @@
+Validación multientorno y cross-browser de Playwright
+
+SHA: f52fe9edd0e4fc9b12b10ba870bffb06189b733d
+Fecha de cierre UTC: 2026-10-27T06:36:53.392Z
+
+Instalación: npm ci aprobado; 247 paquetes; 17 vulnerabilidades transitivas informadas, sin audit fix ni cambios en package-lock.json.
+Compatibilidad de instalación: el CDN primario devolvió HTTP 400 para Firefox/WebKit; el fallback de Playwright completó ambas descargas sin cambiar versiones.
+
+Matriz local: 6/6 combinaciones aprobadas, sin reintentos.
+Cada combinación: 5 features, 7/7 escenarios, 44 pasos, Allure 7/7, reporters exit 0, security exit 0, logSecrets 0, sin screenshots.
+- dev / Google Chrome 156.0.8078.48
+- dev / Firefox 127.0
+- dev / WebKit 17.4
+- uat / Google Chrome 156.0.8078.48
+- uat / Firefox 127.0
+- uat / WebKit 17.4
+Restricción: dev y uat apuntaron a https://www.saucedemo.com; validan perfiles separados, no dos despliegues distintos.
+
+Evidencia local y SHA-256:
+C3787748C07ADD499FA5E49721B735344BD122784A754EC929977A59E9112A1B  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-chrome.zip
+B7CBEE708D196AF0AE05FBCF8DC76C7ED747388B1659C9EB02E4935E78A24BF8  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-firefox.zip
+0F0CEDDCC8E39661F6BF602C3C221D2679291BBA4CDDAC3A4E5CE169BB279A30  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-webkit.zip
+9F01D57A4D8CE29E67D26512042B4ED09A91B60B71E3D6EB86681357C096E7A6  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-chrome.zip
+2C0815BEE8C348BB459E0138CF6E285D805F85D1A45EB01E4B94F0CFE5AEBE73  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-firefox.zip
+A12F9B75186887501AEE4B0D537EE2A91FB31DB5586B00B1502FB7847BA565EC  playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-webkit.zip
+
+GitHub Actions: https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280
+CI: success, exit 0, Node v22.23.3, npm 10.9.9, entorno ci, Chromium, 5 features, 7/7 escenarios, 44 pasos, Allure 7/7, sin screenshots.
+Seguridad CI: 64 archivos de artifact y 17 logs exportados revisados; 0 valores de autenticación expuestos.
+Artifact evidencia: ID 12715280879, SHA-256 785842608760385DD2F48767AC9499486CEDE08195D38CD44CFFBF8DDBA26227
+Artifact seguridad: ID 12715290928, SHA-256 F3E163CD9A94F4C812C080C8B39237A768637833A3E56D8DABA826C6128B3625
+Logs exportados SHA-256: 9FD9749EF6D06A6B739E8131E7FCCB048BB3BFC1FF8CBD4F0CDAE71F68F6C80C
