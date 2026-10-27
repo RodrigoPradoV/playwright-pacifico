@@ -1,0 +1,19 @@
+Validación de endurecimiento Playwright
+SHA: 04c58f184af5f65fb6a41765ac3d15b8913dbed2
+GitHub Actions UTC: 2026-10-27T15:06:31Z - run 40527688771 - conclusión success
+Quality gate: TypeScript aprobado; npm audit 0 vulnerabilidades
+Matriz: dev/uat x Chrome/Firefox/WebKit = 6/6 jobs aprobados
+Resultado por job: 5 features, 7/7 escenarios, 44/44 pasos, exit 0
+Reportes por job: Cucumber 7 = Allure 7; consistencia aprobada
+Seguridad por job: 79 archivos revisados, sin secretos expuestos
+Retención: 90 días, hasta 2027-01-25
+Artifacts de evidencia:
+- dev/chrome ID 12744638342 SHA-256 cd8fc9c70acef2d82935d32306665d33f536cb12b81137978de53205825b3438
+- dev/firefox ID 12744293664 SHA-256 44a5d4e3d43126763186e5bbc5c7774f58da76e7a1ebe852fbb3ee8fc699fad7
+- dev/webkit ID 12745535133 SHA-256 841ed9392220fe3aae7dfb209d757cfe929e9d436bab91a9151d90d0e3b715b1
+- uat/chrome ID 12744941985 SHA-256 d3aa9f27797f7963187ce8022eca662bdbf4c71a4b2ba864d01c9250443c0dbe
+- uat/firefox ID 12743858280 SHA-256 ceda8b583885294552c249e2075564c29e3d25373ed4445e0cc5eca1706fc589
+- uat/webkit ID 12743684464 SHA-256 5bddbc5913100f20cb9603c8ef468cac429f2baa9b0ba3a2ee7476d7c849d7ad
+Artifacts de seguridad: IDs 12744792384, 12743439680, 12744064208, 12744782495, 12745125768, 12744473401
+Copias descargadas y hashes verificados: Ejecucion-Playwright/Hardening-04c58f1/
+Run: https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40527688771
