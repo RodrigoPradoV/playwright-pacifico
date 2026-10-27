@@ -30,7 +30,7 @@ La actualización actual usa el formatter público `allure-cucumberjs/reporter` 
 
 ## GitHub Actions
 
-En el run final 40462024280, GitHub advirtió que `actions/checkout@v4`, `actions/setup-node@v4` y `actions/upload-artifact@v4` declaraban runtime Node 20 y que el runner las ejecutaría con Node 24. Es una advertencia del runtime interno de las Actions; la suite permaneció en Node 22.23.3. No se ocultó la advertencia ni se cambiaron las Actions sin una evaluación separada.
+En el run histórico 40462024280, GitHub advirtió que `actions/checkout@v4`, `actions/setup-node@v4` y `actions/upload-artifact@v4` declaraban runtime Node 20 y que el runner las ejecutaría con Node 24. Es una advertencia del runtime interno de las Actions; la suite permaneció en Node 22.23.3. No se ocultó la advertencia ni se cambiaron las Actions sin una evaluación separada.
 
 ## Navegadores
 
@@ -55,4 +55,4 @@ El SHA `f52fe9edd0e4fc9b12b10ba870bffb06189b733d` aprobó las seis combinaciones
 
 El [run `40462024280`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280) validó ese mismo SHA con Chromium, Node 22.23.3 y npm 10.9.9. El job terminó con exit code 0, igualdad Allure=Cucumber de 7 casos y escaneo aprobado de 64 archivos. Los artifacts de evidencia y seguridad tienen los ID `12715280879` y `12715290928`, respectivamente.
 
-La regresión local de la actualización aprobó typecheck, auditoría con 0 vulnerabilidades, 6/6 combinaciones cross-browser, generación Multiple Cucumber HTML 4.5.0, Allure 3.14.0 y consistencia 7 Cucumber = 7 Allure. La evidencia remota del nuevo SHA se adjunta por cada celda de la matriz del workflow y se relaciona mediante `refs/notes/qa-validation` sin crear un commit documental posterior.
+La regresión local de la actualización aprobó typecheck, auditoría con 0 vulnerabilidades, 6/6 combinaciones cross-browser, generación Multiple Cucumber HTML 4.5.0, Allure 3.14.0 y consistencia 7 Cucumber = 7 Allure. La evidencia remota vigente corresponde al SHA `04c58f184af5f65fb6a41765ac3d15b8913dbed2` y al [run `40527688771`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40527688771): 6/6 jobs aprobados, 5 features, 7/7 escenarios, 44/44 pasos, 79 archivos revisados y 0 vulnerabilidades. Los artifacts de cada celda se relacionan mediante `refs/notes/qa-validation` y conservan retención de 90 días.

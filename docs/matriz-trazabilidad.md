@@ -4,11 +4,12 @@ Secuencia obligatoria: PDF → tag `baseline-playwright-original` → modificaci
 
 ## Evidencia final vigente
 
-- Commit funcional validado: `f52fe9edd0e4fc9b12b10ba870bffb06189b733d`.
+- Commit funcional y de endurecimiento validado: `04c58f184af5f65fb6a41765ac3d15b8913dbed2`.
 - Matriz local: 6/6 combinaciones aprobadas (`dev`/`uat` × Google Chrome/Firefox/WebKit), sin reintentos.
 - Resultado por combinación: 5 features, 7/7 escenarios, 44 pasos, 7/7 casos Allure, reportes y escaneo de secretos aprobados.
-- GitHub Actions: [run `40462024280`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280), aprobado con Chromium, Node 22.23.3 y npm 10.9.9.
-- Artifacts finales: evidencia ID `12715280879` y seguridad ID `12715290928`; hashes registrados en `refs/notes/qa-validation` y copias descargadas en `Ejecucion-Playwright/`.
+- GitHub Actions: [run `40527688771`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40527688771), aprobado con quality gate y 6/6 jobs `dev`/`uat` × Chrome/Firefox/WebKit.
+- Resultado vigente: 5 features, 7/7 escenarios, 44/44 pasos por combinación, Cucumber 7 = Allure 7, `npm audit` con 0 vulnerabilidades y 79 archivos revisados sin secretos.
+- Artifacts finales: evidencia y seguridad por cada celda; IDs y hashes registrados en `refs/notes/qa-validation` y copias descargadas en `Ejecucion-Playwright/Hardening-04c58f1/`.
 
 La actualización de endurecimiento conserva los 7 escenarios y aprobó localmente 6/6 combinaciones con Playwright 1.64.1, Cucumber 13.3.0, Allure 3.14.0, Multiple Cucumber HTML 4.5.0 y `npm audit` con 0 vulnerabilidades. El workflow actual exige typecheck/auditoría y ejecuta esas seis combinaciones como jobs independientes; la identidad remota del SHA entregado se registra en su nota `qa-validation`.
 
@@ -33,4 +34,4 @@ La actualización de endurecimiento conserva los 7 escenarios y aprobó localmen
 
 ## Identidad de la evidencia vigente
 
-El run [40462024280](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280) validó el SHA `f52fe9edd0e4fc9b12b10ba870bffb06189b733d`: 5 features, 7 escenarios, 44 pasos, 7 casos Allure y escaneo de 64 archivos aprobados. La matriz local del mismo SHA aprobó además las seis combinaciones de perfil y navegador. Cada nuevo SHA entregado debe incluir su propia identidad en `test-results/evidence/execution-summary.txt` y en la nota Git `refs/notes/qa-validation`; un resultado anterior no se hereda.
+El [run `40527688771`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40527688771) validó el SHA `04c58f184af5f65fb6a41765ac3d15b8913dbed2`: 6/6 jobs, 5 features por combinación, 7/7 escenarios, 44/44 pasos, 7 casos Allure y escaneo de 79 archivos aprobados. Cada nuevo SHA entregado debe incluir su propia identidad en `test-results/evidence/execution-summary.txt` y en la nota Git `refs/notes/qa-validation`; un resultado anterior no se hereda.

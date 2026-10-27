@@ -51,7 +51,7 @@ Cada combinación limpia resultados, ejecuta la misma suite, genera Cucumber/Mul
 
 `dev` y `uat` apuntan al mismo `BASE_URL` público durante esta validación. Por ello la evidencia acredita el cambio de perfil y la compatibilidad de ejecución, pero no dos despliegues independientes.
 
-## Cierre final sobre el SHA f52fe9e
+## Cierre histórico sobre el SHA f52fe9e
 
 Las seis ejecuciones siguientes se realizaron sin reintentos sobre `f52fe9edd0e4fc9b12b10ba870bffb06189b733d`. Cada una aprobó 5 features, 7/7 escenarios, 44 pasos, 7/7 casos Allure, generación de reportes y escaneo de secretos sobre 63 archivos.
 
@@ -71,7 +71,13 @@ El cierre remoto corresponde al [run `40462024280`](https://github.com/RodrigoPr
 - Logs exportados: SHA-256 `9FD9749EF6D06A6B739E8131E7FCCB048BB3BFC1FF8CBD4F0CDAE71F68F6C80C`.
 - Copias descargadas: `Ejecucion-Playwright/`.
 
-Las ejecuciones anteriores se conservan como historial de caracterización y corrección; no representan tareas abiertas. El estado de cierre lo determina esta evidencia final y la nota Git `refs/notes/qa-validation` asociada al SHA probado.
+Las ejecuciones anteriores se conservan como historial de caracterización y corrección; no representan tareas abiertas. El cierre vigente lo determina la evidencia del SHA `04c58f1` y la nota Git `refs/notes/qa-validation` asociada.
+
+## Cierre vigente sobre el SHA 04c58f1
+
+El [run `40527688771`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40527688771) validó el SHA `04c58f184af5f65fb6a41765ac3d15b8913dbed2` con un quality gate y seis jobs independientes (`dev`/`uat` × Chrome/Firefox/WebKit). Todos terminaron con exit code 0: 5 features, 7/7 escenarios, 44/44 pasos, 7 casos Cucumber y 7 casos Allure, con `npm audit` en 0 vulnerabilidades y 79 archivos revisados sin secretos.
+
+Los artifacts de evidencia y seguridad por combinación tienen retención de 90 días; sus IDs, hashes y copias locales en `Ejecucion-Playwright/Hardening-04c58f1/` están registrados en `refs/notes/qa-validation`.
 
 ## Regresión de endurecimiento
 
