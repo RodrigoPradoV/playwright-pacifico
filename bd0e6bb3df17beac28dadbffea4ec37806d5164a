@@ -1,0 +1,23 @@
+Validación final Playwright
+
+SHA: bd0e6bb3df17beac28dadbffea4ec37806d5164a
+
+Instalación: npm ci aprobado; 247 paquetes; 17 vulnerabilidades transitivas informadas sin ejecutar audit fix.
+
+Run local 1 UTC: 2026-10-27T06:10:12.169Z - exit 0, 5 features, 7/7 escenarios, 44 pasos, Allure 7/7, scan aprobado.
+Evidencia: local-playwright-bd0e6bb3df17beac28dadbffea4ec37806d5164a-run1.zip
+SHA-256: 6458BB04D6540B8C7FA5B1AA9480C7EC1E6CC621ACCAB36DA861C0CEBC48DB80
+
+Run local 2 UTC: 2026-10-27T06:12:12.179Z - exit 0, 5 features, 7/7 escenarios, 44 pasos, Allure 7/7, scan aprobado.
+Evidencia: local-playwright-bd0e6bb3df17beac28dadbffea4ec37806d5164a-run2.zip
+SHA-256: 2BEEE85B9EB20E2E5EE6D05589788209CCD5481F9529D43C24DF2728E7F1F832
+
+GitHub Actions: https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40459767149
+CI UTC: 2026-10-27T06:13:58.775Z - success, exit 0, Node v22.23.3, npm 10.9.9, Chromium.
+CI: 5 features, 7/7 escenarios, 44 pasos, Allure 7/7, 7 identidades únicas y 0 screenshots.
+Seguridad: 64 archivos de artifact y 17 logs exportados revisados; 0 valores de autenticación expuestos.
+Artifact evidencia: ID 12714001805, SHA-256 7988723146025215DFD242AF154BB9FB4F1C58173818F335106AD200C9210CE8
+Artifact seguridad: ID 12712944920, SHA-256 A5970C8B661F1BE7AFF91B4993CA810B5B07C7AF05B91436B761FCF37A2DF94E
+Logs exportados SHA-256: E78DFBEC6310B858E48FA1FC24A727F1CA68C1959B41A22654F6AF2E1579B924
+
+Compatibilidad: no se modificó package-lock.json. Se conserva la advertencia del runtime interno Node 20/24 de Actions v4; la suite se ejecutó con Node 22.
