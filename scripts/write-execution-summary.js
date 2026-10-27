@@ -9,12 +9,15 @@ function output(command, args) {
 const result = process.argv[2] || 'unknown';
 const directory = path.join('test-results', 'evidence');
 fs.mkdirSync(directory, { recursive: true });
+const npmVersion = process.platform === 'win32'
+    ? output(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', 'npm --version'])
+    : output('npm', ['--version']);
 const lines = [
     'Repositorio: playwright-pacifico',
     `Commit SHA: ${output('git', ['rev-parse', 'HEAD'])}`,
     `Fecha UTC: ${new Date().toISOString()}`,
     `Node: ${process.version}`,
-    `npm: ${output(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['--version'])}`,
+    `npm: ${npmVersion}`,
     `Navegador: ${process.env.BROWSER || 'chromium'}`,
     'Comando: npm run test:ci',
     `Resultado real: ${result}`,
