@@ -3,7 +3,7 @@
 ## Clasificación
 
 - **Requisito original:** afirmación comprobable del PDF.
-- **Decisión técnica:** forma elegida para satisfacer un requisito.
+- **Decisión técnica:** forma elegida para satisfacer un requisito o ampliar la cobertura aprobada.
 - **Restricción:** condición de versiones, entorno o servicio externo.
 - **Mejora opcional:** elemento no necesario para aprobar el caso.
 
@@ -17,10 +17,13 @@
 | P-D04 | Decisión técnica | Los Page Objects reciben la página por constructor y usan atributos `data-test`, roles o texto estable. No se conservan XPath absolutos. |
 | P-D05 | Decisión técnica | Los features usan alias de cuenta (`standard`, `locked`, `invalid`); nunca incluyen usuario real o contraseña. |
 | P-D06 | Decisión técnica | Los screenshots se toman únicamente en el hook `After` cuando Cucumber informa `FAILED`, y se adjuntan al escenario además de guardarse como artifact. |
-| P-D07 | Decisión técnica | Una navegación fallida se etiqueta `[DEPENDENCIA_EXTERNA]`; una aserción accesible que no coincide es fallo funcional; lifecycle/configuración se etiqueta `[ERROR_TECNICO]`. Todos mantienen resultado fallido. |
+| P-D07 | Decisión técnica | Solo un fallo de navegación se etiqueta `[DEPENDENCIA_EXTERNA]`; una aplicación accesible que incumple el DOM o una aserción es fallo funcional; lifecycle/configuración se etiqueta `[ERROR_TECNICO]`. Todos mantienen resultado fallido. |
 | P-D08 | Restricción | SauceDemo es una aplicación pública compartida. DNS, timeout, navegación o indisponibilidad no se convierten en aprobados ni se reintentan silenciosamente. |
 | P-D09 | Decisión técnica | Cucumber JSON/HTML, Multiple Cucumber HTML y Allure se generan desde la ejecución real; la limpieza previa impide mezclar resultados anteriores. |
 | P-D10 | Decisión técnica | Chromium es obligatorio en el primer CI. Firefox y WebKit quedan configurados, pero su habilitación CI se difiere hasta estabilizar Chromium. |
+| P-D11 | Decisión técnica | El checkout negativo amplía la cobertura aprobada, pero no se atribuye al PDF como requisito original. |
+| P-D12 | Decisión técnica | Las filas de `Scenario Outline` reciben una identidad Allure estable derivada de sus pasos parametrizados. Un control bloqueante exige que Allure y Cucumber informen el mismo total. No se cambiaron dependencias para conseguirlo. |
+| P-D13 | Decisión técnica | La evidencia inmutable del SHA entregado se registra en el artifact `execution-summary.txt` y en `refs/notes/qa-validation`; así no se crea un commit posterior que deje la evidencia asociada a un SHA anterior. |
 
 ## Mejoras fuera de alcance
 

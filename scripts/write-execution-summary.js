@@ -12,10 +12,15 @@ fs.mkdirSync(directory, { recursive: true });
 const npmVersion = process.platform === 'win32'
     ? output(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', 'npm --version'])
     : output('npm', ['--version']);
+const runUrl = process.env.GITHUB_SERVER_URL && process.env.GITHUB_REPOSITORY && process.env.GITHUB_RUN_ID
+    ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+    : 'local';
 const lines = [
     'Repositorio: playwright-pacifico',
     `Commit SHA: ${output('git', ['rev-parse', 'HEAD'])}`,
     `Fecha UTC: ${new Date().toISOString()}`,
+    `Run: ${runUrl}`,
+    `Run attempt: ${process.env.GITHUB_RUN_ATTEMPT || 'local'}`,
     `Node: ${process.version}`,
     `npm: ${npmVersion}`,
     `Navegador: ${process.env.BROWSER || 'chromium'}`,

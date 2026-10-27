@@ -21,4 +21,4 @@ npm run report:allure
 npm run verify:secrets
 ```
 
-Las suites para Firefox y WebKit se mantienen configuradas como `npm run test:firefox` y `npm run test:webkit`; Chromium es el navegador obligatorio inicial. Los resultados bajo `test-results/` y `allure-results/` no se versionan.
+`report:allure` normaliza la identidad de cada fila de `Scenario Outline` y falla si el total de casos Allure difiere del total de escenarios Cucumber. Las suites para Firefox y WebKit se mantienen configuradas como `npm run test:firefox` y `npm run test:webkit`; Chromium es el navegador obligatorio inicial. Los resultados bajo `test-results/` y `allure-results/` no se versionan.

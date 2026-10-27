@@ -19,7 +19,7 @@
     "test:webkit": "cross-env ENV=dev BROWSER=webkit HEADLESS=true cucumber-js --config=config/cucumber.js",
     "typecheck": "tsc --noEmit",
     "report:cucumber": "ts-node src/helper/report.ts",
-    "report:allure": "allure generate allure-results --clean -o test-results/allure-report",
+    "report:allure": "node scripts/normalize-allure-results.js && allure generate allure-results --clean -o test-results/allure-report && node scripts/verify-report-counts.js",
     "verify:secrets": "node scripts/verify-no-secrets.js"
   },
   "keywords": [],

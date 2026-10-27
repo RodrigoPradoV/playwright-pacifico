@@ -1,22 +1,34 @@
 # Compatibilidad de Playwright
 
-## Lockfile recibido
+## Versiones declaradas y resueltas
 
-El proyecto conserva las versiones resueltas en `package-lock.json`; no se actualizó ninguna dependencia para forzar un resultado exitoso. Entre las versiones observadas están:
+No se modificó `package-lock.json` ni se actualizó ninguna dependencia para forzar un resultado exitoso. Las versiones con `^` de `package.json` expresan rangos; las versiones efectivamente ejecutadas son las resueltas por el lockfile:
 
-- Node objetivo de CI: 22.
-- `@cucumber/cucumber`: 10.8.0.
-- `@playwright/test`: 1.45.3.
-- `allure-cucumberjs`: 2.15.1.
-- `allure-commandline`: 2.27.0.
-- `multiple-cucumber-html-reporter`: 3.5.0.
+| Componente | Rango declarado | Versión resuelta |
+|---|---:|---:|
+| Node de CI | 22 | 22.23.3 en el run 40447364535 |
+| `@cucumber/cucumber` | `^10.0.1` | 10.8.0 |
+| `@playwright/test` | `^1.41.2` | 1.45.3 |
+| `allure-cucumberjs` | `^2.12.0` | 2.15.1 |
+| `allure-commandline` | `^2.27.0` | 2.29.0 |
+| `multiple-cucumber-html-reporter` | `^3.5.0` | 3.7.0 |
 
-`npm ci` se ejecutó el 2026-10-27 y reinstaló 247 paquetes. npm informó 17 vulnerabilidades (1 baja, 8 moderadas y 8 altas) y deprecaciones transitivas. No se ejecutó `npm audit fix` ni se modificó el lockfile porque eso cambiaría versiones fuera de la validación aprobada.
+`npm ci` reinstala exclusivamente esas resoluciones. El run 40447364535 informó 17 vulnerabilidades transitivas (1 baja, 8 moderadas y 8 altas) y paquetes deprecados. No se ejecutó `npm audit fix` porque alteraría el lockfile fuera del alcance aprobado.
 
 ## Allure y Cucumber
 
-La documentación incluida en `allure-cucumberjs` 2.15.1 declara compatibilidad con una generación anterior de Cucumber, mientras el lockfile resuelve Cucumber 10.8.0. El primer dry-run falló porque el constructor del formatter requiere un tercer objeto de opciones; el segundo falló porque el `target` TypeScript implícito intentó invocar la clase `World` sin `new`. Se añadieron el objeto de opciones vacío y `target: ES2020`, sin cambiar versiones. Después de esas correcciones, el dry-run, la suite real de 7 escenarios y `allure generate` finalizaron correctamente.
+La documentación incluida en `allure-cucumberjs` 2.15.1 corresponde a una generación anterior de Cucumber, mientras el lockfile resuelve Cucumber 10.8.0. Durante la caracterización:
+
+1. El primer dry-run falló porque el constructor del formatter requería un tercer objeto de opciones.
+2. El segundo falló porque el target TypeScript implícito intentó invocar la clase `World` sin `new`.
+3. Se añadieron el objeto de opciones y `target: ES2020`, sin cambiar versiones.
+
+La primera ejecución CI generó 7 resultados Allure crudos, pero el HTML agrupó las filas de los dos `Scenario Outline` y mostró 5 casos. La causa fue una identidad histórica idéntica para las filas de cada Outline. Se incorporó `scripts/normalize-allure-results.js`, que deriva una identidad estable de los pasos ya parametrizados y no contiene credenciales. `scripts/verify-report-counts.js` compara el total de Cucumber y Allure y falla si difieren. Esta corrección mantiene las dependencias recibidas.
+
+## GitHub Actions
+
+En el run 40447364535, GitHub advirtió que `actions/checkout@v4`, `actions/setup-node@v4` y `actions/upload-artifact@v4` declaraban runtime Node 20 y que el runner las ejecutaría con Node 24. Es una advertencia del runtime interno de las Actions; la suite permaneció en Node 22.23.3. No se ocultó la advertencia ni se cambiaron las Actions sin una evaluación separada.
 
 ## Navegadores
 
-La configuración admite Chromium, Firefox y WebKit. Solo Chromium forma parte del criterio inicial de CI. La instalación del binario se realiza con el Playwright bloqueado en el lockfile.
+La configuración admite Chromium, Firefox y WebKit. Solo Chromium forma parte del criterio inicial de CI. La instalación del binario se realiza con la versión de Playwright bloqueada en `package-lock.json`.

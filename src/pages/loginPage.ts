@@ -12,10 +12,16 @@ export default class LoginPage {
     async open(): Promise<void> {
         try {
             await this.page.goto(baseUrl(), { waitUntil: 'domcontentloaded', timeout: 30_000 });
-            await expect(this.usernameInput).toBeVisible();
         } catch (error) {
             const detail = error instanceof Error ? error.message : String(error);
             throw new Error(`[DEPENDENCIA_EXTERNA] SauceDemo no estuvo accesible: ${detail}`);
+        }
+
+        try {
+            await expect(this.usernameInput).toBeVisible();
+        } catch (error) {
+            const detail = error instanceof Error ? error.message : String(error);
+            throw new Error(`[FALLO_FUNCIONAL] SauceDemo respondió, pero la pantalla de login no cumple el contrato esperado: ${detail}`);
         }
     }
 
