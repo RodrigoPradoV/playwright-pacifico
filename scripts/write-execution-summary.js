@@ -23,8 +23,11 @@ const lines = [
     `Run attempt: ${process.env.GITHUB_RUN_ATTEMPT || 'local'}`,
     `Node: ${process.version}`,
     `npm: ${npmVersion}`,
+    `Entorno: ${process.env.ENV || 'dev'}`,
+    `Base URL: ${process.env.BASE_URL || 'https://www.saucedemo.com'}`,
     `Navegador: ${process.env.BROWSER || 'chromium'}`,
-    'Comando: npm run test:ci',
+    `Versión del navegador: ${process.env.BROWSER_VERSION || 'administrada por Playwright'}`,
+    `Comando: ${process.env.EXECUTION_COMMAND || 'npm run test:ci'}`,
     `Resultado real: ${result}`,
     '',
 ];

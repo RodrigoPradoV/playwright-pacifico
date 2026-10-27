@@ -33,3 +33,20 @@ La evidencia final de cada nuevo commit se registra sin modificar ese commit:
 4. `report-consistency.txt` acredita que Cucumber y Allure contienen el mismo total.
 
 Este mecanismo evita crear un commit documental posterior que deje las pruebas asociadas a un SHA diferente del entregado.
+
+## Matriz multientorno y cross-browser
+
+La comprobación solicitada se ejecuta sobre un único SHA con las siguientes combinaciones:
+
+| Perfil | Navegador | Script |
+|---|---|---|
+| dev | Google Chrome | `npm run test:dev:chrome` |
+| dev | Firefox | `npm run test:dev:firefox` |
+| dev | WebKit | `npm run test:dev:webkit` |
+| uat | Google Chrome | `npm run test:uat:chrome` |
+| uat | Firefox | `npm run test:uat:firefox` |
+| uat | WebKit | `npm run test:uat:webkit` |
+
+Cada combinación limpia resultados, ejecuta la misma suite, genera Cucumber/Multiple Cucumber HTML/Allure, verifica que Cucumber y Allure informen 7 casos y ejecuta el scan de secretos. Los timestamps, resultados, versiones y hashes de los ZIP del SHA entregado se conservan en `refs/notes/qa-validation` para no modificar el commit después de probarlo.
+
+`dev` y `uat` apuntan al mismo `BASE_URL` público durante esta validación. Por ello la evidencia acredita el cambio de perfil y la compatibilidad de ejecución, pero no dos despliegues independientes.

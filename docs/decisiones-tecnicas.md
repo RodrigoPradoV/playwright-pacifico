@@ -20,10 +20,13 @@
 | P-D07 | Decisión técnica | Solo un fallo de navegación se etiqueta `[DEPENDENCIA_EXTERNA]`; una aplicación accesible que incumple el DOM o una aserción es fallo funcional; lifecycle/configuración se etiqueta `[ERROR_TECNICO]`. Todos mantienen resultado fallido. |
 | P-D08 | Restricción | SauceDemo es una aplicación pública compartida. DNS, timeout, navegación o indisponibilidad no se convierten en aprobados ni se reintentan silenciosamente. |
 | P-D09 | Decisión técnica | Cucumber JSON/HTML, Multiple Cucumber HTML y Allure se generan desde la ejecución real; la limpieza previa impide mezclar resultados anteriores. |
-| P-D10 | Decisión técnica | Chromium es obligatorio en el primer CI. Firefox y WebKit quedan configurados, pero su habilitación CI se difiere hasta estabilizar Chromium. |
+| P-D10 | Decisión técnica | Chromium sigue siendo obligatorio en CI. La compatibilidad adicional se comprueba mediante una matriz local controlada sobre Chrome, Firefox y WebKit sin alterar el job inicial. |
 | P-D11 | Decisión técnica | El checkout negativo amplía la cobertura aprobada, pero no se atribuye al PDF como requisito original. |
 | P-D12 | Decisión técnica | Las filas de `Scenario Outline` reciben una identidad Allure estable derivada de sus pasos parametrizados. Un control bloqueante exige que Allure y Cucumber informen el mismo total. No se cambiaron dependencias para conseguirlo. |
 | P-D13 | Decisión técnica | La evidencia inmutable del SHA entregado se registra en el artifact `execution-summary.txt` y en `refs/notes/qa-validation`; así no se crea un commit posterior que deje la evidencia asociada a un SHA anterior. |
+| P-D14 | Restricción | SauceDemo no proporciona URLs diferenciadas para `dev` y `uat` en el material recibido. Ambos perfiles apuntan al mismo servicio durante la validación y no se presentan como despliegues distintos. |
+| P-D15 | Decisión técnica | `chrome` lanza el canal de Google Chrome instalado; `chromium` queda reservado para el binario administrado por Playwright. |
+| P-D16 | Decisión técnica | Se ejecutan seis combinaciones explícitas (`dev`/`uat` × Chrome/Firefox/WebKit), cada una con limpieza, reportes, comprobación Allure=Cucumber y scan de secretos independientes. |
 
 ## Mejoras fuera de alcance
 

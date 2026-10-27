@@ -31,4 +31,17 @@ En el run 40447364535, GitHub advirtió que `actions/checkout@v4`, `actions/setu
 
 ## Navegadores
 
-La configuración admite Chromium, Firefox y WebKit. Solo Chromium forma parte del criterio inicial de CI. La instalación del binario se realiza con la versión de Playwright bloqueada en `package-lock.json`.
+La configuración diferencia cuatro valores:
+
+- `chromium`: binario administrado por Playwright y obligatorio en CI.
+- `chrome`: canal de Google Chrome instalado en el sistema; no es un alias de Chromium.
+- `firefox`: binario Firefox administrado por Playwright.
+- `webkit`: binario WebKit administrado por Playwright.
+
+Los binarios Firefox y WebKit se instalan con la versión Playwright 1.45.3 bloqueada en `package-lock.json`. La evidencia cross-browser del SHA entregado se registra en los ZIP externos y en `refs/notes/qa-validation`.
+
+En la instalación local del 2026-10-27, el CDN primario devolvió HTTP 400 para Firefox y WebKit. Playwright utilizó automáticamente su URL de respaldo y completó la instalación sin cambiar versiones. Se comprobaron Google Chrome 156.0.8078.48, Firefox 127.0 y WebKit 17.4.
+
+## Perfiles dev y uat
+
+El PDF menciona ejecución en `dev` y `uat`, pero el material recibido solo identifica la URL pública de SauceDemo. Por ello, ambos perfiles se validan de forma independiente usando el mismo servicio público y variables cargadas por separado. Esto prueba que la suite selecciona y registra el perfil solicitado; no prueba que existan dos despliegues distintos de SauceDemo. Una URL UAT diferente deberá suministrarse mediante `BASE_URL` si llega a existir.

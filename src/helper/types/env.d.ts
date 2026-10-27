@@ -7,5 +7,7 @@ declare namespace NodeJS {
         SAUCE_USERNAME?: string;
         SAUCE_LOCKED_USERNAME?: string;
         SAUCE_PASSWORD?: string;
+        BROWSER_VERSION?: string;
+        EXECUTION_COMMAND?: string;
     }
 }

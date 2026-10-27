@@ -23,6 +23,7 @@ report.generate({
         data: [
             { label: "Proyecto", value: "playwright-pacifico / SauceDemo" },
             { label: "Commit", value: process.env.GITHUB_SHA || "local" },
+            { label: "Entorno", value: process.env.ENV || "dev" },
             { label: "Fecha UTC", value: new Date().toISOString() }
         ],
     },
