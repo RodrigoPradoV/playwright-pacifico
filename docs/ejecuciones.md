@@ -50,3 +50,25 @@ La comprobación solicitada se ejecuta sobre un único SHA con las siguientes co
 Cada combinación limpia resultados, ejecuta la misma suite, genera Cucumber/Multiple Cucumber HTML/Allure, verifica que Cucumber y Allure informen 7 casos y ejecuta el scan de secretos. Los timestamps, resultados, versiones y hashes de los ZIP del SHA entregado se conservan en `refs/notes/qa-validation` para no modificar el commit después de probarlo.
 
 `dev` y `uat` apuntan al mismo `BASE_URL` público durante esta validación. Por ello la evidencia acredita el cambio de perfil y la compatibilidad de ejecución, pero no dos despliegues independientes.
+
+## Cierre final sobre el SHA f52fe9e
+
+Las seis ejecuciones siguientes se realizaron sin reintentos sobre `f52fe9edd0e4fc9b12b10ba870bffb06189b733d`. Cada una aprobó 5 features, 7/7 escenarios, 44 pasos, 7/7 casos Allure, generación de reportes y escaneo de secretos sobre 63 archivos.
+
+| Perfil | Navegador | Versión | Resultado | Evidencia externa |
+|---|---|---:|---|---|
+| dev | Google Chrome | 156.0.8078.48 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-chrome.zip` |
+| dev | Firefox | 127.0 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-firefox.zip` |
+| dev | WebKit | 17.4 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-dev-webkit.zip` |
+| uat | Google Chrome | 156.0.8078.48 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-chrome.zip` |
+| uat | Firefox | 127.0 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-firefox.zip` |
+| uat | WebKit | 17.4 | Aprobado | `playwright-matrix-f52fe9edd0e4fc9b12b10ba870bffb06189b733d-uat-webkit.zip` |
+
+El cierre remoto corresponde al [run `40462024280`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280), ejecutado con Node 22.23.3, npm 10.9.9 y Chromium. Terminó con exit code 0, 5 features, 7/7 escenarios, 44 pasos, 7/7 casos Allure, cero screenshots y escaneo de 64 archivos sin secretos expuestos.
+
+- Artifact de evidencia: ID `12715280879`, SHA-256 `785842608760385DD2F48767AC9499486CEDE08195D38CD44CFFBF8DDBA26227`.
+- Artifact de seguridad: ID `12715290928`, SHA-256 `F3E163CD9A94F4C812C080C8B39237A768637833A3E56D8DABA826C6128B3625`.
+- Logs exportados: SHA-256 `9FD9749EF6D06A6B739E8131E7FCCB048BB3BFC1FF8CBD4F0CDAE71F68F6C80C`.
+- Copias descargadas: `Ejecucion-Playwright/`.
+
+Las ejecuciones anteriores se conservan como historial de caracterización y corrección; no representan tareas abiertas. El estado de cierre lo determina esta evidencia final y la nota Git `refs/notes/qa-validation` asociada al SHA probado.

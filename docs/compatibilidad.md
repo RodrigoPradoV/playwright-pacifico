@@ -6,14 +6,14 @@ No se modificó `package-lock.json` ni se actualizó ninguna dependencia para fo
 
 | Componente | Rango declarado | Versión resuelta |
 |---|---:|---:|
-| Node de CI | 22 | 22.23.3 en el run 40447364535 |
+| Node de CI | 22 | 22.23.3 en el run 40462024280 |
 | `@cucumber/cucumber` | `^10.0.1` | 10.8.0 |
 | `@playwright/test` | `^1.41.2` | 1.45.3 |
 | `allure-cucumberjs` | `^2.12.0` | 2.15.1 |
 | `allure-commandline` | `^2.27.0` | 2.29.0 |
 | `multiple-cucumber-html-reporter` | `^3.5.0` | 3.7.0 |
 
-`npm ci` reinstala exclusivamente esas resoluciones. El run 40447364535 informó 17 vulnerabilidades transitivas (1 baja, 8 moderadas y 8 altas) y paquetes deprecados. No se ejecutó `npm audit fix` porque alteraría el lockfile fuera del alcance aprobado.
+`npm ci` reinstala exclusivamente esas resoluciones. La validación final informó 17 vulnerabilidades transitivas (1 baja, 8 moderadas y 8 altas) y paquetes deprecados. No se ejecutó `npm audit fix` porque alteraría el lockfile fuera del alcance aprobado y exigiría una nueva regresión de dependencias.
 
 ## Allure y Cucumber
 
@@ -27,7 +27,7 @@ La primera ejecución CI generó 7 resultados Allure crudos, pero el HTML agrup�
 
 ## GitHub Actions
 
-En el run 40447364535, GitHub advirtió que `actions/checkout@v4`, `actions/setup-node@v4` y `actions/upload-artifact@v4` declaraban runtime Node 20 y que el runner las ejecutaría con Node 24. Es una advertencia del runtime interno de las Actions; la suite permaneció en Node 22.23.3. No se ocultó la advertencia ni se cambiaron las Actions sin una evaluación separada.
+En el run final 40462024280, GitHub advirtió que `actions/checkout@v4`, `actions/setup-node@v4` y `actions/upload-artifact@v4` declaraban runtime Node 20 y que el runner las ejecutaría con Node 24. Es una advertencia del runtime interno de las Actions; la suite permaneció en Node 22.23.3. No se ocultó la advertencia ni se cambiaron las Actions sin una evaluación separada.
 
 ## Navegadores
 
@@ -45,3 +45,9 @@ En la instalación local del 2026-10-27, el CDN primario devolvió HTTP 400 para
 ## Perfiles dev y uat
 
 El PDF menciona ejecución en `dev` y `uat`, pero el material recibido solo identifica la URL pública de SauceDemo. Por ello, ambos perfiles se validan de forma independiente usando el mismo servicio público y variables cargadas por separado. Esto prueba que la suite selecciona y registra el perfil solicitado; no prueba que existan dos despliegues distintos de SauceDemo. Una URL UAT diferente deberá suministrarse mediante `BASE_URL` si llega a existir.
+
+## Validación final
+
+El SHA `f52fe9edd0e4fc9b12b10ba870bffb06189b733d` aprobó las seis combinaciones locales `dev`/`uat` con Google Chrome 156.0.8078.48, Firefox 127.0 y WebKit 17.4. Cada ejecución informó 5 features, 7/7 escenarios, 44 pasos, 7/7 casos Allure, reportes aprobados y cero hallazgos de secretos.
+
+El [run `40462024280`](https://github.com/RodrigoPradoV/playwright-pacifico/actions/runs/40462024280) validó ese mismo SHA con Chromium, Node 22.23.3 y npm 10.9.9. El job terminó con exit code 0, igualdad Allure=Cucumber de 7 casos y escaneo aprobado de 64 archivos. Los artifacts de evidencia y seguridad tienen los ID `12715280879` y `12715290928`, respectivamente.
