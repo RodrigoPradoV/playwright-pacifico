@@ -1,0 +1,5 @@
+Validación local final
+SHA: 6ab2aa8b25ebc0a720d0617280e6789e89e8afe5
+Run 1 UTC: 2026-10-27T03:18:37Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
+Run 2 UTC: 2026-10-27T03:19:51Z - exit 0, 7/7 escenarios, 44 pasos, reporters y secret scan aprobados
+GitHub Actions: pendiente por ausencia de remoto configurado
