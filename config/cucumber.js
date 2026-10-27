@@ -2,8 +2,7 @@ module.exports = {
     default: {
         tags: process.env.npm_config_tags || "",
         formatOptions: {
-            snippetInterface: "async-await",
-            colorsEnabled: true
+            snippetInterface: "async-await"
         },
         paths: [
             "src/features/**/*.feature"
@@ -21,7 +20,7 @@ module.exports = {
             "progress-bar",
             "html:./test-results/reports/cucumber-report.html",
             "json:./test-results/reports/cucumber-report.json",
-            "./config/allure-reporter.js"
+            "allure-cucumberjs/reporter"
         ],
         parallel: 1
     }

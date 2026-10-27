@@ -72,3 +72,16 @@ El cierre remoto corresponde al [run `40462024280`](https://github.com/RodrigoPr
 - Copias descargadas: `Ejecucion-Playwright/`.
 
 Las ejecuciones anteriores se conservan como historial de caracterización y corrección; no representan tareas abiertas. El estado de cierre lo determina esta evidencia final y la nota Git `refs/notes/qa-validation` asociada al SHA probado.
+
+## Regresión de endurecimiento
+
+El 2026-10-27 se actualizó de manera explícita el stack de automatización y se retiró `allure-playwright`, que no participaba en la integración Cucumber. Antes de confirmar el cambio se obtuvieron los siguientes resultados locales:
+
+- `npm run typecheck`: aprobado con TypeScript 5.9.3.
+- `npm audit`: 0 vulnerabilidades; el baseline anterior informaba 17.
+- Chrome 156.0.8078.48, Firefox 157.0 y WebKit 27.2: `dev` y `uat` aprobaron 7/7 escenarios en las seis combinaciones, sin reintentos.
+- Multiple Cucumber HTML 4.5.0 y Allure 3.14.0: generación aprobada.
+- Control de consistencia: 7 escenarios Cucumber = 7 casos Allure.
+- Escaneo de artifacts: aprobado sin valores configurados expuestos.
+
+La validación remota se ejecuta en el mismo SHA mediante un job de calidad y seis jobs de navegador/entorno. Cada artifact conserva entorno, navegador y SHA en el nombre y tiene retención de 90 días. Su run, IDs y hashes se agregan a la nota Git `qa-validation` sin modificar el commit probado.

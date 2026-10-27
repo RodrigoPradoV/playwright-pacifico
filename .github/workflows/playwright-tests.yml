@@ -10,14 +10,44 @@ permissions:
   contents: read
 
 jobs:
-  playwright:
-    name: Playwright / Chromium
+  quality:
+    name: TypeScript and dependency audit
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22 with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Type-check the complete project
+        run: npm run typecheck
+
+      - name: Block high or critical dependency vulnerabilities
+        run: npm run audit:dependencies
+
+  playwright:
+    name: Playwright / ${{ matrix.environment }} / ${{ matrix.browser }}
+    needs: quality
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: [dev, uat]
+        browser: [chrome, firefox, webkit]
     timeout-minutes: 25
     env:
       CI: true
-      ENV: ci
-      BROWSER: chromium
+      ENV: ${{ matrix.environment }}
+      BROWSER: ${{ matrix.browser }}
       HEADLESS: true
       BASE_URL: https://www.saucedemo.com
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
@@ -37,16 +67,16 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Install Chromium and OS dependencies
-        run: npx playwright install --with-deps chromium
+      - name: Install ${{ matrix.browser }} and OS dependencies
+        run: npx playwright install --with-deps ${{ matrix.browser }}
 
-      - name: Run SauceDemo suite
+      - name: Run SauceDemo suite for ${{ matrix.environment }} / ${{ matrix.browser }}
         id: tests
         shell: bash
         run: |
           set +e
           set -o pipefail
-          npm run test:ci 2>&1 | tee .playwright-test.log
+          npm run "test:${{ matrix.environment }}:${{ matrix.browser }}" 2>&1 | tee .playwright-test.log
           test_exit=${PIPESTATUS[0]}
           set -e
           mkdir -p test-results/evidence
@@ -64,6 +94,8 @@ jobs:
 
       - name: Write execution identity
         if: always()
+        env:
+          EXECUTION_COMMAND: npm run test:${{ matrix.environment }}:${{ matrix.browser }}
         run: node scripts/write-execution-summary.js '${{ steps.tests.outputs.exit_code }}'
 
       - name: Check artifacts for exposed secrets
@@ -75,15 +107,16 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-security-summary-${{ github.sha }}
+          name: playwright-security-${{ matrix.environment }}-${{ matrix.browser }}-${{ github.sha }}
           path: test-results/security/secret-scan-summary.txt
           if-no-files-found: warn
+          retention-days: 90
 
       - name: Publish safe Playwright evidence
         if: ${{ always() && steps.secret_scan.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-evidence-${{ github.sha }}
+          name: playwright-evidence-${{ matrix.environment }}-${{ matrix.browser }}-${{ github.sha }}
           path: |
             test-results/reports/
             test-results/multiple-cucumber-html-report/
@@ -93,4 +126,4 @@ jobs:
             test-results/security/secret-scan-summary.txt
             allure-results/
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 90

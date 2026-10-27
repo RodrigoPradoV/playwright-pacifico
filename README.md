@@ -15,6 +15,7 @@ La referencia funcional principal se conserva en `docs/reference/Informe_Automat
 npm ci
 npx playwright install chromium
 npm run typecheck
+npm run audit:dependencies
 npm run test:ci
 npm run report:cucumber
 npm run report:allure
@@ -34,7 +35,9 @@ npm run test:uat:webkit
 
 Los perfiles `dev` y `uat` leen variables del proceso o de `.env.dev` y `.env.uat`, respectivamente. Como SauceDemo solo publica una URL en el alcance recibido, ambos perfiles pueden apuntar al mismo `BASE_URL`; esto valida la selección de configuración, no dos despliegues independientes.
 
-`chrome` usa Google Chrome mediante el canal Playwright correspondiente; `chromium` conserva el binario administrado por Playwright para CI. `report:allure` normaliza la identidad de cada fila de `Scenario Outline` y falla si el total de casos Allure difiere del total de escenarios Cucumber. Los resultados bajo `test-results/` y `allure-results/` no se versionan.
+`chrome` usa Google Chrome mediante el canal Playwright correspondiente; `chromium` conserva el binario administrado por Playwright para ejecuciones focalizadas. `report:allure` normaliza la identidad de cada fila de `Scenario Outline` y falla si el total de casos Allure difiere del total de escenarios Cucumber. Los resultados bajo `test-results/` y `allure-results/` no se versionan.
+
+GitHub Actions ejecuta primero `typecheck` y la auditoría bloqueante de dependencias. Si ambos gates aprueban, lanza la matriz completa `dev`/`uat` × Chrome/Firefox/WebKit. Cada combinación genera y verifica sus propios reportes, escanea secretos y publica un artifact identificado por entorno, navegador y SHA con retención de 90 días.
 
 ## Evidencia de cierre
 
