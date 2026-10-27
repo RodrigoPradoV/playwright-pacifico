@@ -1,11 +1,11 @@
-export {};
-
-declare global {
-    namespace NODEJS {
-        interface ENV {
-            BROWSER: "chrome" | "firefox" | "webkit",
-            ENV: "dev" | "uat",
-            BASEURL: string
-        }
+declare namespace NodeJS {
+    interface ProcessEnv {
+        ENV?: 'dev' | 'uat' | 'ci';
+        BROWSER?: 'chromium' | 'chrome' | 'firefox' | 'webkit';
+        HEADLESS?: 'true' | 'false';
+        BASE_URL?: string;
+        SAUCE_USERNAME?: string;
+        SAUCE_LOCKED_USERNAME?: string;
+        SAUCE_PASSWORD?: string;
     }
 }

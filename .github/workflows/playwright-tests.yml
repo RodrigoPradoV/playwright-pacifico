@@ -1,0 +1,96 @@
+name: Playwright SauceDemo tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  playwright:
+    name: Playwright / Chromium
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CI: true
+      ENV: ci
+      BROWSER: chromium
+      HEADLESS: true
+      BASE_URL: https://www.saucedemo.com
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      SAUCE_LOCKED_USERNAME: ${{ secrets.SAUCE_LOCKED_USERNAME }}
+      SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22 with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install Chromium and OS dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Run SauceDemo suite
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          npm run test:ci 2>&1 | tee .playwright-test.log
+          test_exit=${PIPESTATUS[0]}
+          set -e
+          mkdir -p test-results/evidence
+          mv .playwright-test.log test-results/evidence/playwright-test.log
+          echo "exit_code=${test_exit}" >> "$GITHUB_OUTPUT"
+          exit "${test_exit}"
+
+      - name: Generate Multiple Cucumber HTML report
+        if: always()
+        run: npm run report:cucumber
+
+      - name: Generate Allure report
+        if: always()
+        run: npm run report:allure
+
+      - name: Write execution identity
+        if: always()
+        run: node scripts/write-execution-summary.js '${{ steps.tests.outputs.exit_code }}'
+
+      - name: Check artifacts for exposed secrets
+        id: secret_scan
+        if: always()
+        run: npm run verify:secrets
+
+      - name: Publish sanitized security summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-security-summary-${{ github.sha }}
+          path: test-results/security/secret-scan-summary.txt
+          if-no-files-found: warn
+
+      - name: Publish safe Playwright evidence
+        if: ${{ always() && steps.secret_scan.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-evidence-${{ github.sha }}
+          path: |
+            test-results/reports/
+            test-results/multiple-cucumber-html-report/
+            test-results/allure-report/
+            test-results/screenshots/
+            test-results/evidence/
+            test-results/security/secret-scan-summary.txt
+            allure-results/
+          if-no-files-found: warn
+          retention-days: 14

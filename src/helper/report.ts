@@ -1,28 +1,29 @@
 const report = require("multiple-cucumber-html-reporter");
+const os = require("os");
 
 report.generate({
-    jsonDir: "test-results",
-    reportPath: "test-results/reports/",
-    reportName: "Playwright Automation Report",
-    pageTitle: "Demo test report",
+    jsonDir: "test-results/reports",
+    reportPath: "test-results/multiple-cucumber-html-report",
+    reportName: "SauceDemo - Playwright y Cucumber",
+    pageTitle: "Evidencia SauceDemo",
     displayDuration: false,
     metadata: {
         browser: {
-            name: "chrome",
-            version: "117",
+            name: process.env.BROWSER || "chromium",
+            version: "administrada por Playwright",
         },
-        device: "Josep - PC",
+        device: os.hostname(),
         platform: {
-            name: "Windows",
-            version: "10",
+            name: os.platform(),
+            version: os.release(),
         },
     },
     customData: {
-        title: "Test Info",
+        title: "Identidad de ejecución",
         data: [
-            { label: "Project", value: "Demo Application" },
-            { label: "Release", value: "1.2.3" },
-            { label: "Cycle", value: "Smoke-1" }
+            { label: "Proyecto", value: "playwright-pacifico / SauceDemo" },
+            { label: "Commit", value: process.env.GITHUB_SHA || "local" },
+            { label: "Fecha UTC", value: new Date().toISOString() }
         ],
     },
 });

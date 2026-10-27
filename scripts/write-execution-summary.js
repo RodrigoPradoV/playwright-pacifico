@@ -1,0 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+const { execFileSync } = require('child_process');
+
+function output(command, args) {
+    return execFileSync(command, args, { encoding: 'utf8' }).trim().split(/\r?\n/)[0];
+}
+
+const result = process.argv[2] || 'unknown';
+const directory = path.join('test-results', 'evidence');
+fs.mkdirSync(directory, { recursive: true });
+const lines = [
+    'Repositorio: playwright-pacifico',
+    `Commit SHA: ${output('git', ['rev-parse', 'HEAD'])}`,
+    `Fecha UTC: ${new Date().toISOString()}`,
+    `Node: ${process.version}`,
+    `npm: ${output(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['--version'])}`,
+    `Navegador: ${process.env.BROWSER || 'chromium'}`,
+    'Comando: npm run test:ci',
+    `Resultado real: ${result}`,
+    '',
+];
+fs.writeFileSync(path.join(directory, 'execution-summary.txt'), lines.join('\n'));
