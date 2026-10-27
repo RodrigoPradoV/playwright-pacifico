@@ -15,3 +15,5 @@ CI Cucumber: 5 features, 7 escenarios, 44 pasos aprobados, 0 escenarios fallidos
 Seguridad: aprobada; 63 archivos revisados por el job y 0 coincidencias de credenciales en artifacts/logs revisados
 
 Observación: Allure conserva 7 resultados crudos pero el resumen muestra 5 casos al agrupar filas de Scenario Outline por identidad histórica; Cucumber JSON es la fuente de conteo de escenarios.
+
+Compatibilidad CI: GitHub emitió una advertencia porque actions/checkout@v4, setup-node@v4 y upload-artifact@v4 declaran runtime Node 20; el runner los forzó a Node 24. La suite permaneció en Node v22.23.3 y no fue afectada.
